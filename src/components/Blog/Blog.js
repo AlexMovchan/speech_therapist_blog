@@ -13,15 +13,16 @@ export default class Blog extends Component {
   static propTypes = {
     data: PropTypes.string,
     time: PropTypes.string,
+    post: PropTypes.object.isRequired
   };
 
   static defaultProps = {
     data: false,
-    time: ''
+    time: '',
   };
 
   render() {
-    const { data, time } = this.props;
+    const { data, time, post } = this.props;
 
     return (
       <Container>
@@ -37,7 +38,7 @@ export default class Blog extends Component {
         </DataContainer>
 
         <Header>
-            Its header of article
+          {`${post.name} ${post.surname}`}
         </Header>
 
         <BlogText>

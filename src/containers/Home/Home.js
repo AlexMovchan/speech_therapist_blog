@@ -10,7 +10,7 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      data: ''
+      posts: ''
     };
   }
 
@@ -19,7 +19,7 @@ class Home extends Component {
   }
 
   getAllUserData = () => {
-    GET('/notes/all').then(res => this.setState({ data: res }));
+    GET('/notes/all').then(res => this.setState({ posts: res }));
   };
 
   changeUser = (userHashId, name, surname) => {
@@ -27,19 +27,23 @@ class Home extends Component {
   };
 
   render() {
-    const { data } = this.state;
-    console.log(data);
-    console.log(this.props.data);
+    const { posts } = this.state;
 
     return (
       <div className="App">
         <h3>
           Home
         </h3>
-        <Blog
-          data={new Date().toLocaleDateString()}
-          time={new Date().toLocaleTimeString()}
-        />
+        {posts
+          ? posts.map(post => (
+            <Blog
+              post={post}
+              data={new Date().toLocaleDateString()}
+              time={new Date().toLocaleTimeString()}
+            />
+          ))
+          : ''
+        }
       </div>
     );
   }
