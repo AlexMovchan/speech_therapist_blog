@@ -1,7 +1,4 @@
-const LOAD = 'my-app/widgets/LOAD';
-const CREATE = 'my-app/widgets/CREATE';
-const UPDATE = 'my-app/widgets/UPDATE';
-const REMOVE = 'my-app/widgets/REMOVE';
+const LOAD = 'LOAD';
 
 const initialState = {
   loading: false,
@@ -12,7 +9,7 @@ const initialState = {
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD :
+    case LOAD:
       return {
         ...state,
         loading: false,
@@ -25,20 +22,8 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 export function SaveDataToStore(data) {
-  return { 
-    type: LOAD, 
+  return {
+    type: LOAD,
     data
   };
-}
-
-export function createWidget(widget) {
-  return { type: CREATE, widget };
-}
-
-export function updateWidget(widget) {
-  return { type: UPDATE, widget };
-}
-
-export function removeWidget(widget) {
-  return { type: REMOVE, widget };
 }

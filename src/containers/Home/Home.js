@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { GET, PUT } from '../../fetchRequest';
 import Blog from '../../components/Blog/Blog';
 import { SaveDataToStore } from '../../redux/modules/blog';
+import { HeadContainer, NewPost, UserStatus } from './style';
 
 // @connect(state => ({
 //   data: state.blog
@@ -10,25 +12,31 @@ import { SaveDataToStore } from '../../redux/modules/blog';
 class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      posts: ''
-    };
+    this.state = {};
   }
 
+  static propTypes = {
+    posts: PropTypes.array
+  }
+
+  static defaultProps = {
+    posts: []
+  }
+
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
   componentWillMount() {
-    console.log('will mount');
     this.getAllUserData();
-    // this.changeUser('5b45d76a8a08d732f4ee3b65', 'Chris', 'Brown');
   }
 
   getAllUserData = () => {
-    const { dispatch } = this.props;
+    const { dispatch } = this.context.store;
 
     GET('/notes/all')
-      .then(res => {
-        return dispatch(SaveDataToStore(res))
-      })
-  }  
+      .then(res => dispatch(SaveDataToStore(res)));
+  }
 
   changeUser = (userHashId, name, surname) => {
     PUT('/notes/all', { _id: userHashId, name, surname });
@@ -37,14 +45,22 @@ class Home extends Component {
   render() {
     const { posts } = this.props;
 
-    console.log('rendered');
-
     return (
       <div className="App">
-        <h3>
-          Home
-        </h3>
-        <button onClick={this.getAllUserData}> Get dispatch </button>
+        <HeadContainer>
+          <div className="ava" />
+          <UserStatus type="text" isAdmin={false} defaultValue="This will be status" />
+        </HeadContainer>
+        <button type="button" onClick={this.getAllUserData}>
+          Get dispatch
+        </button>
+        <NewPost>
+          <input type="text" className="header" placeholder="Введіть заголовок посту" />
+          <textarea className="post" />
+          <button type="button">
+            Підтвердити
+          </button>
+        </NewPost>
         {posts
           ? posts.map(post => (
             <Blog
