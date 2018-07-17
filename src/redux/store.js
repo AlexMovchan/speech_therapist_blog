@@ -1,8 +1,20 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './modules/index';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import thunk from "redux-thunk";
 
-export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState);
+// import routes
+import blog from './modules/blog';
+
+const reducer = combineReducers({
+  routing: routerReducer,
+  blog,
+});
+
+export default function configureStore() {
+  const store = createStore(
+    reducer, 
+    applyMiddleware(thunk)
+  );
 
   if (module.hot) {
     module.hot.accept('./modules/index', () => {

@@ -4,20 +4,31 @@ const UPDATE = 'my-app/widgets/UPDATE';
 const REMOVE = 'my-app/widgets/REMOVE';
 
 const initialState = {
-  data: [1, 2, 4]
+  loading: false,
+  loaded: false,
+  data: []
 };
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    // do reducer stuff
+    case LOAD :
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        data: [...action.data]
+      };
     default: return state;
   }
 }
 
 // Action Creators
-export function loadWidgets() {
-  return { type: LOAD };
+export function SaveDataToStore(data) {
+  return { 
+    type: LOAD, 
+    data
+  };
 }
 
 export function createWidget(widget) {

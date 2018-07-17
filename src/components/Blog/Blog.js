@@ -23,10 +23,8 @@ export default class Blog extends Component {
 
   render() {
     const { data, time, post } = this.props;
-
     return (
       <Container>
-
         <DataContainer>
           <Link href="##">
             {data
