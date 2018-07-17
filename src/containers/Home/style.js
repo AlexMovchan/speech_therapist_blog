@@ -25,11 +25,11 @@ export const UserStatus = styled.input`
     border: 1px solid #e2e2e2;
     transition: .3s;
     padding: 5px;
-    color: ${props => (props.isAdmin ? 'black' : '#828282')};
-    background: ${props => (props.isAdmin ? 'white' : '#ececec')};
+    color: ${({ isAdmin }) => (isAdmin ? 'black' : '#828282')};
+    background: ${({ isAdmin }) => (isAdmin ? 'white' : '#ececec')};
     &:focus {
-        box-shadow: ${props => (props.isAdmin ? '0 0 3px 1px #9ac6ff' : 'none')};
-        border-color: ${props => (props.isAdmin ? '#9ac6ff' : 'none')};
+        box-shadow: ${({ isAdmin }) => (isAdmin ? '0 0 3px 1px #9ac6ff' : 'none')};
+        border-color: ${({ isAdmin }) => (isAdmin ? '#9ac6ff' : 'none')};
         outline: none;
     }
 `;
