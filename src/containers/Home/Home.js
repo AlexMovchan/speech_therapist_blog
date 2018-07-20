@@ -54,7 +54,7 @@ class Home extends Component {
   }
 
   render() {
-    const { posts, modalIsOpen } = this.props;
+    const { posts, modalIsOpen, dispatch } = this.props;
     const isAdmin = false;
 
 return (
@@ -64,7 +64,7 @@ return (
           <UserStatus type="text" isAdmin={isAdmin} readOnly={!isAdmin} defaultValue="This will be status" />
         </HeadContainer>
 
-        <NewPost addPost={this.addPost} />
+        <NewPost addPost={this.addPost} dispatch={dispatch} />
 
         {posts
           ? posts.reverse().map(post => (

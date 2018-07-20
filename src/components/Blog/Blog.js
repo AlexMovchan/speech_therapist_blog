@@ -33,7 +33,7 @@ export default class Blog extends Component {
     return (
       <Container>
         <div
-          className="remove-btn"
+          className="remove-post"
           onClick={() => onDelete(post._id, post.header)}
           onKeyPress={() => onDelete(post._id, post.header)}
         >
@@ -48,7 +48,6 @@ export default class Blog extends Component {
             {time}
           </Link>
         </DataContainer>
-
         <Header>
           {post.header}
         </Header>

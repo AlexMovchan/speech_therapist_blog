@@ -2,17 +2,18 @@ const OPEN = 'OPEN';
 const CLOSE = 'CLOSE';
 
 const initialState = {
-  modalIsOpen: false
+  modalIsOpen: false,
+  modalName: ''
 };
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case OPEN:
-      console.log('ITS OPEN');
       return {
         ...state,
-        modalIsOpen: true
+        modalIsOpen: true,
+        modalName: action.nameOfModal
       };
 
     case CLOSE:
@@ -26,9 +27,9 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 // Action Creators
-export function toggleModal(action) {
-  console.log(action);
+export function toggleModal(action, nameOfModal) {
   return {
     type: action,
+    nameOfModal
   };
 }

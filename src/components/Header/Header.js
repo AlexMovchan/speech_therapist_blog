@@ -36,7 +36,7 @@ export default class Header extends Component {
                 Something
             </Link>
           </li>
-          <Image onClick={() => dispatch(toggleModal('OPEN'))}>
+          <Image onClick={() => dispatch(toggleModal('OPEN', 'authorization'))}>
             <img src="./sign_in.png" alt="sign in" />
           </Image>
         </ul>

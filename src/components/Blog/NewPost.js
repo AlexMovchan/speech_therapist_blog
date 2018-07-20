@@ -1,12 +1,31 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Post } from './style';
+import { NewPostContainer } from './style';
+import { toggleModal } from '../../redux/modules/modal';
+import { setPostTextToPreview } from '../../redux/modules/blog';
+
+function insertMetachars(sStartTag, sEndTag, values) {
+  console.log(values);
+  let bDouble = arguments.length > 1,
+    oMsgInput = document.myForm.post,
+    nSelStart = oMsgInput.selectionStart,
+    nSelEnd = oMsgInput.selectionEnd,
+    sOldText = oMsgInput.value;
+  values.post = sOldText.substring(0, nSelStart) + (bDouble ? sStartTag + sOldText.substring(nSelStart, nSelEnd) + sEndTag : sStartTag) + sOldText.substring(nSelEnd);
+  oMsgInput.setSelectionRange(bDouble || nSelStart === nSelEnd ? nSelStart + sStartTag.length : nSelStart, (bDouble ? nSelEnd : nSelStart) + sStartTag.length);
+  oMsgInput.focus();
+}
+
+const previewPostFoo = (dispatch, values) => {
+  dispatch(setPostTextToPreview(values.post));
+  dispatch(toggleModal('OPEN', 'preview'));
+};
 
 const NewPost = (props) => {
   /* eslint-disable */
-  const { addPost } = props;
+  const { addPost, dispatch } = props;
   return (
-    <Post>
+    <NewPostContainer>
       <Form
         onSubmit={addPost}
         render={({
@@ -14,23 +33,60 @@ const NewPost = (props) => {
           form,
           submitting,
           pristine,
+          values
         }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} name="myForm">
+            <div>
+              <span 
+                className='tag-btn' 
+                onClick={() => insertMetachars('<h3>','</h3>', values)} 
+                title='Заголовок'
+              >
+                Заголовок
+              </span>
+
+              <span 
+                className='tag-btn' 
+                onClick={() => insertMetachars('<ul>\n<li></li>\n<li></li>\n<li></li>\n','</ul>', values)} 
+                title='Заголовок'
+              >
+                Список
+              </span>
+
+              <span 
+                className='tag-btn' 
+                onClick={() => insertMetachars('<p>\n\n','</p>', values)} 
+                title='Абзац'
+              >
+                Абзац
+              </span>
+
+            </div>
             <Field
               name="header"
               component="input"
-              className="header"
+              className="header-input"
               type="text"
               placeholder="Post header"
             />
-            <Field name="post" className="post" component="textarea" placeholder="Your post" />
-            <button type="submit">
-                Опублікувати
-            </button>
+            <Field 
+              name="post" 
+              className="post-input" 
+              component="textarea" 
+              placeholder="Your post" 
+            />
+            <div className="btn-container">
+              <button type="submit">
+                  Опублікувати
+              </button>
+              <button type="button" onClick={() => previewPostFoo(dispatch, values)}>
+                  Переглянути
+              </button>
+            </div>
           </form>
         )}
       />
-    </Post>
+    </NewPostContainer>
   );
 };
 

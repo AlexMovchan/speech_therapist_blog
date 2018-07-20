@@ -16,15 +16,15 @@ export const Container = styled.div`
     &:hover .remove-btn {
         opacity: 1; 
     }
-    .remove-btn {
-        color: red;
+    .remove-post {
+        color: #fb9090;
         position: absolute;
         left: 4px;
         top: 4px;
         opacity: 0;
         -webkit-transition: .4s;
         transition: .3s;
-        border: 1px solid #ff0000;
+        border: 1px solid #fb9090;
         border-radius: 14px;
         width: 16px;
         height: 16px;
@@ -42,8 +42,8 @@ export const Container = styled.div`
 
 export const DataContainer = styled.div`
     position: absolute;
-    right: 0;
-    top: 0;    
+    right: 5px;
+    top: 5px;  
 `;
 
 export const Link = styled.a`
@@ -54,9 +54,10 @@ export const Link = styled.a`
 `;
 export const Header = styled.h2`
     text-align: center;
-    margin: 5px 0;
+    margin: 25px 0 5px;
     padding: 10px 0;
-    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    // border-bottom: 1px solid #e2e2e2;
 `;
 
 export const BlogText = styled.div`
@@ -66,13 +67,12 @@ export const BlogText = styled.div`
     pre {
         font-family: Roboto;
         white-space: normal;
+        margin: 12px 5px;
     }
 `;
 
-export const Post = styled.div`
+export const NewPostContainer = styled.div`
     width: 70%;
-    max-height: 700px;
-    padding: 10px;
     margin: auto;
     display: flex;
     flex-flow: column;
@@ -81,52 +81,62 @@ export const Post = styled.div`
     form {
         width: 100%;
         text-align: center;
-    }
-    .header {
-        margin: 10px;
-        width: 90%;
-        height: 20px;
-        border-radius: 5px;
-        border: 1px solid #e2e2e2;
-        transition: .3s;
-        padding: 5px;
-        &:focus {
-            box-shadow: 0 0 3px 1px #9ac6ff;
-            border-color: #9ac6ff;
-            outline: none;
-        }
-    }
-    .post {
-        margin: 10px;
-        width: 90%;
-        min-height: 200px;
-        border-radius: 5px;
-        border: 1px solid #e2e2e2;
-        transition: .3s border;
-        padding: 5px;
-        resize: vertical;
-        &:focus {
-            box-shadow: 0 0 3px 1px #9ac6ff;
-            border-color: #9ac6ff;
-            outline: none;
-        }
-    }
-    button {
-        margin: 10px;
-        width: 91%;
-        color: #fff;
-        background-color: #218838;
-        border-color: #1e7e34;
-        text-decoration: none;
-        border: 1px solid transparent;
-        border-radius: .25rem;
-        transition: .15s;
-        line-height: 1.5;
-        padding: .375rem .75rem;
-        cursor: pointer;
-        &:hover {
-            background-color: #3dd45e;
+        .tag-btn {
             border: 1px solid grey;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            &:hover {
+                background: #e2e2e2;
+            }
+        }
+        .header-input {
+            margin: 10px 0;
+            width: calc(100% - 12px);
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid #e2e2e2;
+            transition: .3s;
+            padding: 5px;
+            &:focus {
+                box-shadow: 0 0 3px 1px #9ac6ff;
+                border-color: #9ac6ff;
+                outline: none;
+            }
+        }
+        .post-input {
+            margin: 10px 0;
+            width: calc(100% - 12px);
+            min-height: 200px;
+            border-radius: 5px;
+            border: 1px solid #e2e2e2;
+            transition: .3s border;
+            padding: 5px;
+            resize: vertical;
+            &:focus {
+                box-shadow: 0 0 3px 1px #9ac6ff;
+                border-color: #9ac6ff;
+                outline: none;
+            }
+        }
+        button {
+            margin: 10px;
+            width: 91%;
+            color: #fff;
+            background-color: #218838;
+            border-color: #1e7e34;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            transition: .15s;
+            line-height: 1.5;
+            padding: .375rem .75rem;
+            cursor: pointer;
+            &:hover {
+                background-color: #3dd45e;
+                border: 1px solid grey;
+            }
         }
     }
 `;

@@ -21,8 +21,8 @@ export default function configureStore() {
   );
 
   if (module.hot) {
-    module.hot.accept('./modules/index', () => {
-      const nextRootReducer = require('./modules/index');
+    module.hot.accept('./modules', () => {
+      const nextRootReducer = require('./modules');
       store.replaceReducer(nextRootReducer);
     });
   }
