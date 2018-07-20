@@ -19,3 +19,27 @@ export function PUT(url, body) {
   })
     .then(data => console.log(data));
 }
+
+export function POST(url, body) {
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+    .then(data => console.log(data));
+}
+
+export function DEL(url, body) {
+  return fetch(url, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+    .then(data => console.log(data));
+}

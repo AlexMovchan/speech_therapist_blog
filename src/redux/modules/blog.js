@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 // Action Creators
-export function SaveDataToStore(data) {
+export function savePostsToStore(data) {
   return {
     type: LOAD,
     data

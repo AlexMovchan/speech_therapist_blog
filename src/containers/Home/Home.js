@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GET, PUT } from '../../fetchRequest';
+import {
+  GET, PUT, POST, DEL
+} from '../../fetchRequest';
 import Blog from '../../components/Blog/Blog';
-import { SaveDataToStore } from '../../redux/modules/blog';
-import { HeadContainer, NewPost, UserStatus } from './style';
+import NewPost from '../../components/Blog/NewPost';
+import { savePostsToStore } from '../../redux/modules/blog';
+// import { CheckIsAdmin } from '../../redux/modules/admin';
+import { HeadContainer, UserStatus } from './style';
 
-// @connect(state => ({
-//   data: state.blog
-// }))
+
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   static propTypes = {
     posts: PropTypes.array
   }
@@ -28,42 +25,51 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    this.getAllUserData();
+    this.getPosts();
   }
 
-  getAllUserData = () => {
+  getPosts = () => {
+    /* eslint-disable */    
     const { dispatch } = this.context.store;
 
-    GET('/notes/all')
-      .then(res => dispatch(SaveDataToStore(res)));
+    GET('/posts/all')
+      .then(res => dispatch(savePostsToStore(res)));
   }
 
-  changeUser = (userHashId, name, surname) => {
-    PUT('/notes/all', { _id: userHashId, name, surname });
+  changePost = (userHashId, name, surname) => {
+    PUT('/posts/all', { _id: userHashId, name, surname });
   };
 
-  render() {
-    const { posts } = this.props;
+  addPost = (post) => {
+    POST('/posts', post)
+      .then(this.getPosts());
+  }
 
-    return (
+  deletePost = (postID, header) => {
+    console.log('delete - ', postID);
+    if (window.confirm(`are you sure delete post ${header}?`)) {
+      DEL('/posts', { id: postID })
+        .then(this.getPosts());
+    }
+  }
+
+  render() {
+    const { posts, modalIsOpen } = this.props;
+    const isAdmin = false;
+
+return (
       <div className="App">
         <HeadContainer>
           <div className="ava" />
-          <UserStatus type="text" isAdmin={false} defaultValue="This will be status" />
+          <UserStatus type="text" isAdmin={isAdmin} readOnly={!isAdmin} defaultValue="This will be status" />
         </HeadContainer>
-        <button type="button" onClick={this.getAllUserData}>
-          Get dispatch
-        </button>
-        <NewPost>
-          <input type="text" className="header" placeholder="Введіть заголовок посту" />
-          <textarea className="post" />
-          <button type="button">
-            Підтвердити
-          </button>
-        </NewPost>
+
+        <NewPost addPost={this.addPost} />
+
         {posts
-          ? posts.map(post => (
+          ? posts.reverse().map(post => (
             <Blog
+              onDelete={this.deletePost}
               key={post._id}
               post={post}
               data={new Date().toLocaleDateString()}
@@ -79,7 +85,8 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.blog.data
+    posts: state.blog.data,
+    modalIsOpen: state.modal.modalIsOpen
   };
 }
 

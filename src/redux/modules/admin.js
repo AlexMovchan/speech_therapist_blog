@@ -22,6 +22,7 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 export function CheckIsAdmin({ login, pass }) {
+  console.log(login, pass);
   return (initialState.login === login && initialState.login === pass)
     ? ({ type: LOAD, isAdmin: true })
     : ({ type: LOAD, isAdmin: false });

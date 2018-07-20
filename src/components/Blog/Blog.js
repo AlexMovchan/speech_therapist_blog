@@ -13,18 +13,32 @@ export default class Blog extends Component {
   static propTypes = {
     data: PropTypes.string,
     time: PropTypes.string,
-    post: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired,
+    onDelete: PropTypes.func
   };
 
   static defaultProps = {
     data: false,
     time: '',
+    onDelete: () => {}
   };
 
   render() {
-    const { data, time, post } = this.props;
+    const {
+      data,
+      time,
+      post,
+      onDelete
+    } = this.props;
     return (
       <Container>
+        <div
+          className="remove-btn"
+          onClick={() => onDelete(post._id, post.header)}
+          onKeyPress={() => onDelete(post._id, post.header)}
+        >
+          X
+        </div>
         <DataContainer>
           <Link href="##">
             {data
@@ -36,14 +50,11 @@ export default class Blog extends Component {
         </DataContainer>
 
         <Header>
-          {`${post.name} ${post.surname}`}
+          {post.header}
         </Header>
 
         <BlogText>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem atque
-          temporibus distinctio iusto possimus sit enim sunt, recusandae
-          consequuntur totam culpa odio laudantium amet eligendi ratione
-          reiciendis suscipit provident placeat?
+          <pre className="lol" dangerouslySetInnerHTML={{ __html: post.post }} />
         </BlogText>
       </Container>
     );
