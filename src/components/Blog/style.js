@@ -66,6 +66,9 @@ export const BlogText = styled.div`
     font-family: Roboto;
     padding: 5px 0;
     color: #5a5a5a;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e2e2e2;
     h3 {
         color: black;
         text-align: center;

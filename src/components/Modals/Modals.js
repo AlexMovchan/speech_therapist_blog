@@ -65,7 +65,6 @@ class Modals extends Component {
 
     render() {
       const { modalIsOpen, modalName, post } = this.props;
-      console.log(post);
       return (
         <Modal
           isOpen={modalIsOpen}
