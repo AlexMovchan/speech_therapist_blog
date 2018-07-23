@@ -17,7 +17,7 @@ function insertMetachars(sStartTag, sEndTag, values) {
 }
 
 const previewPostFoo = (dispatch, values) => {
-  dispatch(setPostTextToPreview(values.post));
+  dispatch(setPostTextToPreview(values));
   dispatch(toggleModal('OPEN', 'preview'));
 };
 
@@ -59,6 +59,14 @@ const NewPost = (props) => {
                 title='Абзац'
               >
                 Абзац
+              </span>
+
+              <span 
+                className='tag-btn' 
+                onClick={() => insertMetachars('<img src="тут має бутти ссилка на картинку"', '/>', values)} 
+                title='Картинка'
+              >
+                Картинка
               </span>
 
             </div>

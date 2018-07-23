@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   Container, DataContainer, Header, BlogText
 } from './style';
-import { setActivePost } from '../../redux/modules/activePost';
 
 export default class Blog extends Component {
   constructor(props) {
@@ -42,7 +41,7 @@ export default class Blog extends Component {
           onClick={() => onDelete(post._id, post.header)}
           onKeyPress={() => onDelete(post._id, post.header)}
         >
-          X
+            X
         </div>
         <DataContainer>
           <Link to={`/post/${post._id}`}>

@@ -29,13 +29,15 @@ class Modals extends Component {
     isAdmin: PropTypes.bool,
     modalIsOpen: PropTypes.bool,
     modalName: PropTypes.string,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    post: PropTypes.object
   };
 
   static defaultProps = {
     isAdmin: false,
     modalIsOpen: false,
     modalName: '',
+    post: {},
     dispatch: () => {}
   };
 
@@ -62,8 +64,8 @@ class Modals extends Component {
     }
 
     render() {
-      const { modalIsOpen, modalName } = this.props;
-
+      const { modalIsOpen, modalName, post } = this.props;
+      console.log(post);
       return (
         <Modal
           isOpen={modalIsOpen}
@@ -73,7 +75,7 @@ class Modals extends Component {
           contentLabel="Example Modal"
         >
           {modalName === 'authorization' ? <Authorization closeModal={this.closeModal} addPost={this.addPost} logIn={this.logIn} /> : ' '}
-          {modalName === 'preview' ? <PreviewPost /> : ' '}
+          {modalName === 'preview' ? <PreviewPost post={post} /> : ' '}
         </Modal>
       );
     }
@@ -84,6 +86,7 @@ function mapStateToProps(state) {
     isAdmin: state.admin.isAdmin,
     modalIsOpen: state.modal.modalIsOpen,
     modalName: state.modal.modalName,
+    post: state.blog.post,
     dispatch: state.dispatch,
   };
 }

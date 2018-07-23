@@ -7,7 +7,7 @@ export const Container = styled.div`
     padding: 10px;
     border-radius: 10px;
     position: relative;
-    cursor: pointer;
+    cursor: auto;
     background: #f9f9f9;
     transition: .4s;
     &:hover {
@@ -75,6 +75,15 @@ export const BlogText = styled.div`
         white-space: normal;
         margin: 12px 5px;
     }
+    img {
+        width: 100%
+    }
+    .image-40 {
+        width: 40%;
+        float: left;
+        margin: 0 30px 20px 0px;
+    }
+
 `;
 
 export const NewPostContainer = styled.div`

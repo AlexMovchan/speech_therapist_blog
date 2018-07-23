@@ -10,7 +10,6 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case COMPARE_LOGIN:
-      console.log('action - ', action);
       return {
         ...state,
         isAdmin: action.isAdmin,

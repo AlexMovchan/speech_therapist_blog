@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   loaded: false,
   data: [],
-  postText: ''
+  post: {}
 };
 
 // Reducer
@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action = {}) {
     case SET_PREVIEW_TEXT:
       return {
         ...state,
-        postText: action.dangerouslyHTML
+        post: action.post
       };
 
     default: return state;
@@ -37,9 +37,10 @@ export function savePostsToStore(data) {
   };
 }
 
-export function setPostTextToPreview(dangerouslyHTML) {
+export function setPostTextToPreview(post) {
+  console.log(post);
   return {
     type: SET_PREVIEW_TEXT,
-    dangerouslyHTML
+    post
   };
 }
