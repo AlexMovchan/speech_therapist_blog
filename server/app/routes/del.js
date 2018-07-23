@@ -2,7 +2,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 module.exports = function (app, db) {
   // delete
-  console.log('app in routes - ', app);
+  console.log('delete');
   app.delete('/posts', (req, res) => {
     const id = req.body.id;
     const details = { _id: new ObjectID(id) };

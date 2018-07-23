@@ -7,7 +7,6 @@ import {
 import Blog from '../../components/Blog/Blog';
 import NewPost from '../../components/Blog/NewPost';
 import { savePostsToStore } from '../../redux/modules/blog';
-// import { CheckIsAdmin } from '../../redux/modules/admin';
 import { HeadContainer, UserStatus } from './style';
 
 
@@ -46,7 +45,6 @@ class Home extends Component {
   }
 
   deletePost = (postID, header) => {
-    console.log('delete - ', postID);
     if (window.confirm(`are you sure delete post ${header}?`)) {
       DEL('/posts', { id: postID })
         .then(this.getPosts());
@@ -54,21 +52,21 @@ class Home extends Component {
   }
 
   render() {
-    const { posts, modalIsOpen, dispatch } = this.props;
-    const isAdmin = false;
+    const { posts, modalIsOpen, isAdmin, dispatch } = this.props;
 
-return (
+    return (
       <div className="App">
         <HeadContainer>
           <div className="ava" />
-          <UserStatus type="text" isAdmin={isAdmin} readOnly={!isAdmin} defaultValue="This will be status" />
+          <UserStatus type="text" isAdmin={isAdmin} readOnly={!isAdmin} placeholder="This will be status" />
         </HeadContainer>
 
-        <NewPost addPost={this.addPost} dispatch={dispatch} />
+        {isAdmin ? <NewPost addPost={this.addPost} dispatch={dispatch} /> : ''}
 
         {posts
           ? posts.reverse().map(post => (
             <Blog
+              isAdmin={isAdmin}
               onDelete={this.deletePost}
               key={post._id}
               post={post}
@@ -86,7 +84,8 @@ return (
 function mapStateToProps(state) {
   return {
     posts: state.blog.data,
-    modalIsOpen: state.modal.modalIsOpen
+    modalIsOpen: state.modal.modalIsOpen,
+    isAdmin: state.admin.isAdmin
   };
 }
 

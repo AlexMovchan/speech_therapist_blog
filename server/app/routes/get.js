@@ -19,7 +19,6 @@ module.exports = function (app, db) {
         .find({})
         .toArray((error, documents) => {
           if (error) throw error;
-          console.log('documents - ', documents);
           res.json(documents);
         });
     }

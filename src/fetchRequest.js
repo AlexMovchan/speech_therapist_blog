@@ -1,9 +1,10 @@
-export function GET(url) {
+export function GET(url, body) {
   return fetch(url, {
     method: 'GET',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
     },
+    body
   })
     .then(data => data.json());
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Container, AuthorizationForm } from './style';
 
-const Authorization = ({ closeModal, addPost }) => (
+const Authorization = ({ closeModal, logIn }) => (
   <Container>
     <button type="button" className="close-modal" onClick={closeModal}>
         Х
@@ -15,12 +15,13 @@ const Authorization = ({ closeModal, addPost }) => (
     </h2>
     <AuthorizationForm>
       <Form
-        onSubmit={addPost}
+        onSubmit={logIn}
         render={({
           handleSubmit,
           form,
           submitting,
           pristine,
+          values
         }) => (
           <form onSubmit={handleSubmit}>
             <div>

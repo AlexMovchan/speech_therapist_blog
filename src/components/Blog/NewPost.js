@@ -55,7 +55,7 @@ const NewPost = (props) => {
 
               <span 
                 className='tag-btn' 
-                onClick={() => insertMetachars('<p>\n\n','</p>', values)} 
+                onClick={() => insertMetachars('<p>','</p>', values)} 
                 title='Абзац'
               >
                 Абзац

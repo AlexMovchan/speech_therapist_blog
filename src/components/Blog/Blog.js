@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
-  Container, DataContainer, Link, Header, BlogText
+  Container, DataContainer, Header, BlogText
 } from './style';
+import { setActivePost } from '../../redux/modules/activePost';
 
 export default class Blog extends Component {
   constructor(props) {
@@ -14,12 +16,14 @@ export default class Blog extends Component {
     data: PropTypes.string,
     time: PropTypes.string,
     post: PropTypes.object.isRequired,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    isAdmin: PropTypes.bool
   };
 
   static defaultProps = {
     data: false,
     time: '',
+    isAdmin: false,
     onDelete: () => {}
   };
 
@@ -28,23 +32,23 @@ export default class Blog extends Component {
       data,
       time,
       post,
-      onDelete
+      onDelete,
+      isAdmin
     } = this.props;
     return (
       <Container>
         <div
-          className="remove-post"
+          className={`remove-post ${isAdmin ? '' : 'none'}`}
           onClick={() => onDelete(post._id, post.header)}
           onKeyPress={() => onDelete(post._id, post.header)}
         >
           X
         </div>
         <DataContainer>
-          <Link href="##">
-            {data
-            }
+          <Link to={`/post/${post._id}`}>
+            {data}
           </Link>
-          <Link href="##">
+          <Link to="##">
             {time}
           </Link>
         </DataContainer>

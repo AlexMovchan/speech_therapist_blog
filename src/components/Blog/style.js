@@ -13,7 +13,7 @@ export const Container = styled.div`
     &:hover {
         box-shadow: 0 0 25px 1px #b9b9b9;
     }
-    &:hover .remove-btn {
+    &:hover .remove-post {
         opacity: 1; 
     }
     .remove-post {
@@ -38,32 +38,38 @@ export const Container = styled.div`
             color: white;
         }
     }
+    .none {
+        display: none;   
+    }
 `;
 
 export const DataContainer = styled.div`
     position: absolute;
     right: 5px;
     top: 5px;  
+    a {
+        font-size: 12px;
+        color: #ff6161;
+        margin: 0 5px;
+        text-decoration: none;
+    }
 `;
 
-export const Link = styled.a`
-    font-size: 12px;
-    color: #ff6161;
-    margin: 0 5px;
-    text-decoration: none;
-`;
 export const Header = styled.h2`
     text-align: center;
     margin: 25px 0 5px;
     padding: 10px 0;
     border-top: 1px solid #e2e2e2;
-    // border-bottom: 1px solid #e2e2e2;
 `;
 
 export const BlogText = styled.div`
-    color: grey;
     font-family: Roboto;
     padding: 5px 0;
+    color: #5a5a5a;
+    h3 {
+        color: black;
+        text-align: center;
+    }
     pre {
         font-family: Roboto;
         white-space: normal;

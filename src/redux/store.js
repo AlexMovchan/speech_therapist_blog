@@ -6,12 +6,14 @@ import thunk from 'redux-thunk';
 import blog from './modules/blog';
 import admin from './modules/admin';
 import modal from './modules/modal';
+import activePost from './modules/activePost';
 
 const reducer = combineReducers({
   routing: routerReducer,
   blog,
   admin,
   modal,
+  activePost
 });
 
 export default function configureStore() {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Authorization from '../Authorization/Authorization';
 import PreviewPost from '../PreviewPost/PreviewPost';
 import { toggleModal } from '../../redux/modules/modal';
+import { CheckIsAdmin } from '../../redux/modules/admin';
 
 const customStyles = {
   content: {
@@ -23,6 +25,33 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 class Modals extends Component {
+  static propTypes = {
+    isAdmin: PropTypes.bool,
+    modalIsOpen: PropTypes.bool,
+    modalName: PropTypes.string,
+    dispatch: PropTypes.func
+  };
+
+  static defaultProps = {
+    isAdmin: false,
+    modalIsOpen: false,
+    modalName: '',
+    dispatch: () => {}
+  };
+
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, isAdmin } = this.props;
+
+    if (nextProps.isAdmin === true && nextProps.isAdmin !== isAdmin) {
+      dispatch(toggleModal('CLOSE', 'authorization'));
+    }
+  }
+
+    logIn = (values) => {
+      const { dispatch } = this.props;
+      dispatch(CheckIsAdmin(values));
+    };
+
     closeModal = () => {
       const { dispatch } = this.props;
       dispatch(toggleModal('CLOSE'));
@@ -33,7 +62,7 @@ class Modals extends Component {
     }
 
     render() {
-      const { modalIsOpen, modalName, postText } = this.props;
+      const { modalIsOpen, modalName } = this.props;
 
       return (
         <Modal
@@ -43,8 +72,8 @@ class Modals extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          {modalName === 'authorization' ? <Authorization closeModal={this.closeModal} addPost={this.addPost} /> : ' '}
-          {modalName === 'preview' ? <PreviewPost post={postText} /> : ' '}
+          {modalName === 'authorization' ? <Authorization closeModal={this.closeModal} addPost={this.addPost} logIn={this.logIn} /> : ' '}
+          {modalName === 'preview' ? <PreviewPost /> : ' '}
         </Modal>
       );
     }
@@ -52,9 +81,9 @@ class Modals extends Component {
 
 function mapStateToProps(state) {
   return {
+    isAdmin: state.admin.isAdmin,
     modalIsOpen: state.modal.modalIsOpen,
     modalName: state.modal.modalName,
-    postText: state.blog.postText,
     dispatch: state.dispatch,
   };
 }

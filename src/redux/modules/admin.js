@@ -1,15 +1,16 @@
-const LOAD = 'LOAD';
+const COMPARE_LOGIN = 'COMPARE_LOGIN';
 
 const initialState = {
   isAdmin: false,
-  login: 'Mom',
+  login: 'Helen',
   pass: 'frfgekmrf'
 };
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD:
+    case COMPARE_LOGIN:
+      console.log('action - ', action);
       return {
         ...state,
         isAdmin: action.isAdmin,
@@ -22,8 +23,7 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 export function CheckIsAdmin({ login, pass }) {
-  console.log(login, pass);
-  return (initialState.login === login && initialState.login === pass)
-    ? ({ type: LOAD, isAdmin: true })
-    : ({ type: LOAD, isAdmin: false });
+  return (initialState.login === login && initialState.pass === pass)
+    ? { type: COMPARE_LOGIN, isAdmin: true }
+    : { type: COMPARE_LOGIN, isAdmin: false };
 }
