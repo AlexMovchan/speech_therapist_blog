@@ -1,4 +1,3 @@
-My first practice with MERN stack.
-Basic API on express, simple Mongo Database structure.
+Blog-site SPI.
 
-I will take it as main template for my future projects :-)
+Used technologies - React/Redux, Node/Express, MongoDB, ES6
