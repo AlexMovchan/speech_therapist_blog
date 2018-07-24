@@ -158,3 +158,10 @@ export const NewPostContainer = styled.div`
         }
     }
 `;
+
+export const FacebookComments = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    align-items: center;
+`;

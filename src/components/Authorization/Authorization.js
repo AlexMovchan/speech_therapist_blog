@@ -5,10 +5,10 @@ import { Container, AuthorizationForm } from './style';
 const Authorization = ({ closeModal, logIn }) => (
   <Container>
     <button type="button" className="close-modal" onClick={closeModal}>
-        Х
+      Х
     </button>
     <h2>
-        Hello Olena! Please enter the login & password!
+      Hello Olena! Please enter the login & password!
       <span role="img" aria-label="emojii">
         😊
       </span>
@@ -17,21 +17,11 @@ const Authorization = ({ closeModal, logIn }) => (
       <Form
         onSubmit={logIn}
         render={({
-          handleSubmit,
-          form,
-          submitting,
-          pristine,
-          values
+          handleSubmit, form,
         }) => (
           <form onSubmit={handleSubmit}>
             <div>
-              <Field
-                name="login"
-                component="input"
-                className="styledInput"
-                type="text"
-                placeholder="Login"
-              />
+              <Field name="login" component="input" className="styledInput" type="text" placeholder="Login" />
             </div>
             <div>
               <Field
@@ -43,7 +33,7 @@ const Authorization = ({ closeModal, logIn }) => (
               />
             </div>
             <button type="submit">
-                Увійти
+Увійти
             </button>
           </form>
         )}

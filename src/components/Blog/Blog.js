@@ -6,7 +6,8 @@ import {
   Container,
   DataContainer,
   Header,
-  BlogText
+  BlogText,
+  FacebookComments
 } from './style';
 
 export default class Blog extends Component {
@@ -39,37 +40,38 @@ export default class Blog extends Component {
       isAdmin
     } = this.props;
     return (
-      <Container>
-        <div
-          className={`remove-post ${isAdmin ? '' : 'none'}`}
-          onClick={() => onDelete(post._id, post.header)}
-          onKeyPress={() => onDelete(post._id, post.header)}
-        >
+      <FacebookProvider appId="233858604113631">
+        <Container>
+          <div
+            className={`remove-post ${isAdmin ? '' : 'none'}`}
+            onClick={() => onDelete(post._id, post.header)}
+            onKeyPress={() => onDelete(post._id, post.header)}
+          >
             X
-        </div>
-        <DataContainer>
-          <Link to={`/post/${post._id}`}>
-            {data}
-          </Link>
-          <Link to="##">
-            {time}
-          </Link>
-        </DataContainer>
-        <Header>
-          {post.header}
-        </Header>
+          </div>
+          <DataContainer>
+            <Link to={`/post/${post._id}`}>
+              {data}
+            </Link>
+            <Link to="##">
+              {time}
+            </Link>
+          </DataContainer>
+          <Header>
+            {post.header}
+          </Header>
 
-        <BlogText>
-          <pre className="lol" dangerouslySetInnerHTML={{ __html: post.post }} />
-        </BlogText>
+          <BlogText>
+            <pre className="lol" dangerouslySetInnerHTML={{ __html: post.post }} />
+          </BlogText>
 
-        <FacebookProvider appId="233858604113631">
-          <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />
+          <FacebookComments>
+            <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />
 
-          <Comments href="http://www.facebook.com" />
-        </FacebookProvider>
-
-      </Container>
+            <Comments href="http://www.facebook.com" />
+          </FacebookComments>
+        </Container>
+      </FacebookProvider>
     );
   }
 }
