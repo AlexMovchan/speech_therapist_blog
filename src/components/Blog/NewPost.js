@@ -58,6 +58,14 @@ const NewPost = (props) => {
               >
                 Картинка
               </span>
+
+              <span
+                className="tag-btn"
+                onClick={() => insertMetachars('<img src="тут має бутти ссилка на картинку"', 'class="image-40" />', values)}
+                title="Картинка"
+              >
+                Картинка 50%
+              </span>
             </div>
             <Field name="header" component="input" className="header-input" type="text" placeholder="Post header" />
             <Field name="post" className="post-input" component="textarea" placeholder="Your post" />

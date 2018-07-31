@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import ActivePost from '../ActivePost/ActivePost';
 import About from '../About/About';
 import Modals from '../../components/Modals/Modals';
+import Page404 from '../../components/404/Page404';
 import { AppContainer } from './style';
 
 
@@ -18,9 +19,10 @@ const App = () => (
 
       <AppContainer>
         <Switch>
+          <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/post/:id" component={ActivePost} />
-          <Route path="/" component={Home} />
+          <Route component={Page404} />
         </Switch>
       </AppContainer>
     </Fragment>

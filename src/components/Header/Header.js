@@ -27,7 +27,7 @@ export default class Header extends Component {
             </Link>
           </li>
           <li>
-            <Link to="/home">
+            <Link to="/">
                 Home
             </Link>
           </li>

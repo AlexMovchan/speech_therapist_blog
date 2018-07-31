@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import { Container, AuthorizationForm } from './style';
+import Button from '../Button/Button';
 
 const Authorization = ({ closeModal, logIn }) => (
   <Container>
@@ -32,14 +34,22 @@ const Authorization = ({ closeModal, logIn }) => (
                 placeholder="Password"
               />
             </div>
-            <button type="submit">
-Увійти
-            </button>
+            <Button colorScheme="primary" type="submit" text="Увійти" />
           </form>
         )}
       />
     </AuthorizationForm>
   </Container>
 );
+
+Authorization.propTypes = {
+  closeModal: PropTypes.func,
+  logIn: PropTypes.string
+};
+
+Authorization.defaultProps = {
+  closeModal: () => {},
+  logIn: ''
+};
 
 export default Authorization;

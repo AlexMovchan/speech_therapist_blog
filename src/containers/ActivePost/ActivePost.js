@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { GET } from '../../fetchRequest';
+import Button from '../../components/Button/Button';
+
 import { Container } from './style';
 
 class ActivePost extends Component {
@@ -24,8 +26,8 @@ class ActivePost extends Component {
 
     return (
       <Container>
-        <Link to="/home" className="link-to-home">
-            Назад
+        <Link to="/" className="link-to-home">
+          <Button colorScheme="light" text="Назад" width="100px" />
         </Link>
         <h1>
           {activePost.header}

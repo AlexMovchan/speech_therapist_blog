@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 70%;
-    margin: 20px auto;
+    width: 80%;
+    margin: 10px auto 20px;
     border: 1px solid #e2e2e2;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     position: relative;
     cursor: auto;
@@ -31,6 +31,7 @@ export const Container = styled.div`
         padding: 2px;
         text-align: center;
         font-size: 14px;
+        cursor: pointer;
         &:hover {
             opacity: 1;
             background: #ff9393;
@@ -77,6 +78,7 @@ export const BlogText = styled.div`
         font-family: Roboto;
         white-space: normal;
         margin: 12px 5px;
+        overflow: hidden;
     }
     img {
         width: 100%
@@ -90,7 +92,7 @@ export const BlogText = styled.div`
 `;
 
 export const NewPostContainer = styled.div`
-    width: 70%;
+    width: 85%;
     margin: auto;
     display: flex;
     flex-flow: column;

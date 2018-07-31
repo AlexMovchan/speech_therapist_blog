@@ -1,9 +1,22 @@
 import styled from 'styled-components';
 
-export const HeadContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+`;
+
+export const Posts = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+    padding: 20px;
+`;
+
+export const Ava = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+    padding: 20px;
+    height: calc(100vh - 50px);
+    align-items: center;
     .ava {
         width: 200px;
         height: 200px;
@@ -33,4 +46,3 @@ export const UserStatus = styled.input`
         outline: none;
     }
 `;
-

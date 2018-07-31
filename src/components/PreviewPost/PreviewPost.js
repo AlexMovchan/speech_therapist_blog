@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Container, DataContainer, Header, BlogText
 } from '../Blog/style';
@@ -15,5 +16,15 @@ const PreviewPost = ({ post }) => (
     </BlogText>
   </Container>
 );
+
+PreviewPost.propTypes = {
+  post: PropTypes.object,
+};
+
+PreviewPost.defaultProps = {
+  post: {},
+
+};
+
 
 export default PreviewPost;

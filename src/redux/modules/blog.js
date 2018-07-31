@@ -38,9 +38,8 @@ export function savePostsToStore(data) {
 }
 
 export function setPostTextToPreview(post) {
-  console.log(post);
   return {
     type: SET_PREVIEW_TEXT,
-    post
+    post: post.reverse()
   };
 }

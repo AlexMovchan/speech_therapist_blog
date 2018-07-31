@@ -10,37 +10,31 @@ import {
   FacebookComments
 } from './style';
 
-export default class Blog extends Component {
+export default class PostSection extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   static propTypes = {
-    data: PropTypes.string,
-    time: PropTypes.string,
     post: PropTypes.object.isRequired,
     onDelete: PropTypes.func,
     isAdmin: PropTypes.bool
   };
 
   static defaultProps = {
-    data: false,
-    time: '',
     isAdmin: false,
     onDelete: () => {}
   };
 
   render() {
     const {
-      data,
-      time,
       post,
       onDelete,
       isAdmin
     } = this.props;
     return (
-      <FacebookProvider appId="233858604113631">
+      // <FacebookProvider appId="233858604113631">
         <Container>
           <div
             className={`remove-post ${isAdmin ? '' : 'none'}`}
@@ -49,14 +43,13 @@ export default class Blog extends Component {
           >
             X
           </div>
+
           <DataContainer>
             <Link to={`/post/${post._id}`}>
-              {data}
-            </Link>
-            <Link to="##">
-              {time}
+              {post.publication_date || 'недавно'}
             </Link>
           </DataContainer>
+
           <Header>
             {post.header}
           </Header>
@@ -65,13 +58,13 @@ export default class Blog extends Component {
             <pre className="lol" dangerouslySetInnerHTML={{ __html: post.post }} />
           </BlogText>
 
-          <FacebookComments>
+          {/* <FacebookComments style={{ clear: 'both' }}>
             <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />
 
             <Comments href="http://www.facebook.com" />
-          </FacebookComments>
+          </FacebookComments> */}
         </Container>
-      </FacebookProvider>
+      // </FacebookProvider>
     );
   }
 }

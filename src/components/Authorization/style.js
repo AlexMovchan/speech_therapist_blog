@@ -61,21 +61,4 @@ export const AuthorizationForm = styled.div`
             outline: none;
         }
     }
-    button {
-        margin: 10px;
-        width: 91%;
-        color: #fff;
-        background-color: #3da1ce;
-        text-decoration: none;
-        border: 1px solid transparent;
-        border-radius: .25rem;
-        transition: .15s;
-        line-height: 1.5;
-        padding: .375rem .75rem;
-        cursor: pointer;
-        &:hover {
-            background-color: #70d8f5;
-            border: 1px solid #c1c1c1;
-        }
-    }
 `;

@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import {
   GET, PUT, POST, DEL
 } from '../../fetchRequest';
-import Blog from '../../components/Blog/Blog';
+import PostSection from '../../components/Blog/PostSection';
 import NewPost from '../../components/Blog/NewPost';
+import Button from '../../components/Button/Button';
 import { savePostsToStore } from '../../redux/modules/blog';
-import { HeadContainer, UserStatus } from './style';
+import {
+  Container, Ava, UserStatus, Posts
+} from './style';
 
 
 class Home extends Component {
@@ -40,7 +43,11 @@ class Home extends Component {
   };
 
   addPost = (post) => {
-    POST('/posts', post)
+    // copy values Object and add a publication time parametr
+  const modernPost = Object.assign({}, post);
+  modernPost.publication_date = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
+
+    POST('/posts', modernPost)
       .then(this.getPosts());
   }
 
@@ -53,30 +60,31 @@ class Home extends Component {
 
   render() {
     const { posts, modalIsOpen, isAdmin, dispatch } = this.props;
-
+    console.log('posts - ', posts);
     return (
-      <div className="App">
-        <HeadContainer>
+      <Container>
+        <Ava>
           <div className="ava" />
           <UserStatus type="text" isAdmin={isAdmin} readOnly={!isAdmin} placeholder="This will be status" />
-        </HeadContainer>
+          <Button text={'Відправити повідомлення'} colorScheme={'success'} />
+        </Ava>
 
+        <Posts>
         {isAdmin ? <NewPost addPost={this.addPost} dispatch={dispatch} /> : ''}
 
         {posts
-          ? posts.reverse().map(post => (
-            <Blog
+          ? posts.map(post => (
+            <PostSection
               isAdmin={isAdmin}
               onDelete={this.deletePost}
               key={post._id}
               post={post}
-              data={new Date().toLocaleDateString()}
-              time={new Date().toLocaleTimeString()}
             />
           ))
           : ''
         }
-      </div>
+        </Posts>
+      </Container>
     );
   }
 }
